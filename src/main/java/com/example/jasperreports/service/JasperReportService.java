@@ -26,12 +26,11 @@ import net.sf.jasperreports.engine.JasperReport;
 @Service
 public class JasperReportService {
 
-    public static final String CERTIFICADOS = "classpath:jasper/certificados";
+    public static final String CERTIFICADOS = "classpath:jasper/certificados/";
     public static final String IMAGEBG = "classpath:jasper/img/certificado-teste.png";
     public static final String ARQUIVOJRXML = "certificado.jrxml";
     public static final Logger LOGGER = LoggerFactory.getLogger(JasperReportService.class);
-    public static final String DESTINOPDF = "C:\\jasper-report"; 
-
+    public static final String DESTINOPDF = "C:\\jasper-report\\";
 
     public void gerarRelatorio(Aluno aluno) throws IOException {
 
@@ -56,7 +55,6 @@ public class JasperReportService {
             JasperExportManager.exportReportToPdfFile(print, folderDiretorio);
             LOGGER.info("PDF EXPORTADO PARA: {}", folderDiretorio);
 
-      
         } catch (Exception e) {
             LOGGER.error("Erro ao compilar o relatório: " + e.getMessage());
         }
@@ -65,14 +63,14 @@ public class JasperReportService {
     private byte[] loadimage(String imagebg) throws IOException {
         String image = ResourceUtils.getFile(imagebg).getAbsolutePath();
         File file = new File(image);
-        try(InputStream inputStream = new FileInputStream(file)) {
+        try (InputStream inputStream = new FileInputStream(file)) {
             return IOUtils.toByteArray(inputStream);
         }
     }
 
     private String getDiretorioSave(String folderName) {
         this.createDiretorio(folderName);
-        return DESTINOPDF+folderName.concat(".pdf");
+        return DESTINOPDF + folderName.concat(".pdf");
     }
 
     private void createDiretorio(String folderName) {
@@ -83,7 +81,7 @@ public class JasperReportService {
     }
 
     public String getAbsolutePath() throws FileNotFoundException {
-        return ResourceUtils.getFile(CERTIFICADOS+ARQUIVOJRXML).getAbsolutePath();
+        return ResourceUtils.getFile(CERTIFICADOS + ARQUIVOJRXML).getAbsolutePath();
     }
-    
+
 }

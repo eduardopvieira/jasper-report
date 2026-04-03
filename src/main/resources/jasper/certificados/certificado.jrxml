@@ -12,7 +12,7 @@
 	<parameter name="nome" class="java.lang.String"/>
 	<parameter name="curso" class="java.lang.String"/>
 	<parameter name="cargaHoraria" class="java.lang.Integer"/>
-	<parameter name="dataInicio" class="java.sql.Date"/>
+	<parameter name="dataInicio" class="java.util.Date"/>
 	<parameter name="dataFim" class="java.util.Date"/>
 	<parameter name="imageJasper" class="java.lang.Object"/>
 	<query language="sql"><![CDATA[]]></query>
@@ -37,7 +37,7 @@
 				<expression><![CDATA[$P{nome}]]></expression>
 			</element>
 			<element kind="textField" uuid="eb72d952-9981-473f-b153-0906cda32f3a" x="158" y="260" width="522" height="110" fontSize="20.0">
-				<expression><![CDATA["Concluo com êxito o curso de " + $P{curso} + ", totalizando " + $P{cargaHoraria} + " horas de estudo. Este curso teve início em " + $P{dataInicio} + " e encerrou-se em " + $P{dataFim} + "."]]></expression>
+				<expression><![CDATA["Concluo com êxito o curso de " + $P{curso} + ", totalizando " + $P{cargaHoraria} + " horas de estudo. Este curso teve início em " + new java.text.SimpleDateFormat("dd/MM/yyyy").format($P{dataInicio}) + " e encerrou-se em " + new java.text.SimpleDateFormat("dd/MM/yyyy").format($P{dataFim}) + "."]]></expression>
 			</element>
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 		</band>
